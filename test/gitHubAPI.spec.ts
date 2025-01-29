@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { log } from "console";
 import * as pw from "playwright";
 
 const url = process.env.URL;
@@ -11,7 +10,7 @@ test.describe("GIT API Testing", () => {
   test("Create Issue", async () => {
     const requestContext = await pw.request.newContext();
     const response = await requestContext.post(
-      `https://api.github.com/repos/${owner}/${repo}/issues`,
+      `${url}/repos/${owner}/${repo}/issues`,
       {
         data: {
           title: "Found a bug12",
@@ -29,10 +28,10 @@ test.describe("GIT API Testing", () => {
   test("Create repository", async () => {
     const requestContext = await pw.request.newContext();
     const response = await requestContext.post(
-      `https://api.github.com/user/repos`,
+      `${url}/user/repos`,
       {
         data: {
-          name: "private_repo___1",
+          name: "private_repo___2",
           description: "This is your first repository",
           homepage: "https://github.com",
           private: true,
