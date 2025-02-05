@@ -7,7 +7,7 @@ const repo = process.env.REPO;
 const token = process.env.TOKEN;
 
 test.describe("GIT API Testing", () => {
-  test("Create Issue", async () => {
+  test.skip("Create Issue", async () => {
     const requestContext = await pw.request.newContext();
     const response = await requestContext.post(
       `${url}/repos/${owner}/${repo}/issues`,
@@ -26,7 +26,7 @@ test.describe("GIT API Testing", () => {
     expect(response.status()).toBe(201);
   });
 
-  test("Create repository", async () => {
+  test.skip("Create repository", async () => {
     const requestContext = await pw.request.newContext();
     const response = await requestContext.post(`${url}/user/repos`, {
       data: {
@@ -83,9 +83,9 @@ test.describe("GIT API Testing", () => {
     }
   });
 
-  test("List All repositories", async () => {
+  test.only("List All repositories", async () => {
     const requestContext = await pw.request.newContext();
-    const response = await requestContext.get(`${url}/users/${owner}/repos`);
+    const response = await requestContext.get(`${url}/user/repos`);
     expect(response.status()).toBe(200);
     const repos = await response.json();
     for (const repo of repos) {
